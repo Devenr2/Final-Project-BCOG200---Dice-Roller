@@ -1,1 +1,50 @@
 #This file is going to contain the code for my project. I need to outline the functions, classes and methods I will be using. 
+
+OUTLINE
+
+The first function of the program is going to be the input method for class creation.
+This will need a visual component and a couple different things. 
+I first want there to be a simple text box where the user inputs 7 items into the system. 
+  -Each input will be a two digit number, with a range of 01-99. 
+  -The seven inputs will be Character Level, and then each of the Six DnD stats. 
+  -There will be text explaining to the user the valid input style as well as messages for improper inputs
+After inputing the stats and level, the user then selects which proficiencies they have. They will be shown a list of all DnD skills, and there will be three buttons next to each one.
+  -The buttons are proficient, expertiese, and normal. 
+
+After inputing all this, the user will then be taken to the Dice Selection Screen
+
+The Dice Selection screen will merely show all the different dice you can roll. For a majority of the dice, clicking on it will ask how many dice to roll, and if this is a damage roll. 
+  =This would be for the D4, D6, D8, D10, and D12
+
+Clicking on the D100 will simply roll the D100 and give an output
+
+Clicking on the D20 is the most interesting. This will offer a variety of options in the form of different buttons and text boxes: shown below
+    - Which Ability? (Text Box)
+    - Which Skill? (Text Box)
+    - Advantage / Disadvantage / Normal (Buttons)
+    - Cursed / Bless / Guidence (Buttons)
+After this, the dice will be rolled and the final total will be given to the user. There will also be specail messages for critical hits and misses.
+
+
+CHARACTER CREATION
+Input Level / Stats
+    -These numbers will have to be saved and compared against an interal system
+    -Level changes the characters proficiency mod
+    -Raw Stat Number determines each Ability mod
+    -Must be feedback when improper numbers are input
+    -Planning to use GUI for visual components
+    -Buttons for skills is a must, don't want the user having to type all that out
+    -The proficiency bonus for each skill is taken from the hidden value of the user's level
+    -Experts have doubled proficiency bonus
+Dice Selector
+    -If I can, reshape each button to look like the dice being selected
+    -Each button opens up a secondary window for more selections (dice number/extra mod's)
+    -Make is look nice, nobody wants a bland dice roller
+Dice Roller
+    -Use Numpy for random number generation
+    -Do not forget to correctly do the math for the mod's and checks
+    -Special messages when the random number is a 1 or 20 for d20 rolls
+    -Advantage is running it twice and taking the greater number with disadvantage being the opposite
+      -Compare the random numbers, take the higher/lower, THEN do the math
+    -Cursed / bless / and guidence all add/subtract a d4 from the total of a roll
+      -Do the roll and math, THEN random select a number 1-4 and add/subtract it from the other roll
