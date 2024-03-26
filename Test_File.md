@@ -10,9 +10,15 @@ TEST CHARACTER STATS
 Character Level: 12
 
 Strength: 15.
+
 Dexterity: 10.
+
 Constitution 10.
+
 Intelligence 6.
+
 Wisdom 20. 
+
 Charisma 1. 
+
 Proficiencies: Athletics, Perception, Survival.
