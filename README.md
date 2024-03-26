@@ -10,6 +10,7 @@ Functions
   3. A function that actually rolls the die and then outputs the number to the player, with special messages for natural 20's and natural 1's (probably use Numpy for random rolling, and something else for visual component)
 
 INTRODUCTION TEXT
+
   WELCOME! This is a virtual dice roller for all of your Dungeons and Dragons Dice needs! This program allows you to roll ability checks, to hit rolls, percentile checks, and even damage dice while allowing for advantage, disadvantage and even status conditions. The way to use it is simple: 
   1. First you are going to need to input your character level, ability scores, and proficiencies. Simply enter those numbers when prompted by the program.
   2. Second, you will asked which dice you will be rolling, simply select the appropriate dice from the options shown
