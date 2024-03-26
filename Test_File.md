@@ -8,7 +8,8 @@ As this program allows for user choice in what dice is rolled, there will natrua
 TEST CHARACTER STATS
 
 Character Level: 12
-Strenght: 15.
+
+Strength: 15.
 Dexterity: 10.
 Constitution 10.
 Intelligence 6.
