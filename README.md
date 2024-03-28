@@ -16,3 +16,21 @@ INTRODUCTION TEXT
   2. Second, you will asked which dice you will be rolling, simply select the appropriate dice from the options shown
   3. Finally, you will be asked if there are any external conditions. This includes if the check is an ability check, if it is made with advantage, and if you are currently cursed.
   The end result is the program will roll the dice for you and give you a simple digit answer. No more having to do the math yourself, or hunt through your character sheet in order to add up your proficiency, abilty score, and status. The program will 'save' your character stats until closed. Enjoy!
+
+Function Names:
+Enter_Level
+---Check to make sure is inbetween 01-99
+Enter_Stats
+---Each one is a number between 01-99
+Select_Skils
+Select_Dice
+Modify_Roll
+Roll_Dice
+Post_Roll_Math
+Display_Result
+  -Crit_Hit
+  -Crit_Miss
+
+
+
+Input Data: None Required, Just button pressing and typing numbers
