@@ -48,3 +48,49 @@ Dice Roller
       -Compare the random numbers, take the higher/lower, THEN do the math
     -Cursed / bless / and guidence all add/subtract a d4 from the total of a roll
       -Do the roll and math, THEN random select a number 1-4 and add/subtract it from the other roll
+
+
+Enter_Level
+
+
+
+Enter_Stats
+
+Determine_Prof_Bonus
+---takes input from Enter_Level and Enter_Stats
+
+Select_Skills
+
+Determine_Skill_Bonus
+---takes input from Select_Skills and Determine_Prof_Bonus
+
+Select_Dice
+
+Modify_Roll
+
+--Has_Advantage
+
+--Has_Disadvantage
+
+--Input_Skill
+
+--Is_Cursed
+
+--Is_Blessed
+
+--Has_Guidence
+
+Roll_Dice
+
+Post_Roll_Math
+
+--Takes input from Determine_Skill_Bonus and Input_Skill
+
+--Takes input from Is_Cursed, Is_Blessed and Has_Guidence
+
+Display_Result
+
+ -Crit_Hit
+
+ -Crit_Miss
+
