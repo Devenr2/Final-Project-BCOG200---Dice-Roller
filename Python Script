@@ -90,7 +90,137 @@ Post_Roll_Math
 
 Display_Result
 
- -Crit_Hit
+CODE IN PROGRESS BELOW (I will be copy-pasting from my sublime text)
 
- -Crit_Miss
+import pygame
+import sys
+import random
 
+# Initialize Pygame
+pygame.init()
+
+# Set up the display
+WIDTH, HEIGHT = 800, 800
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("D&D Dice Roller")
+
+# Colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+
+# Font
+font = pygame.font.SysFont(None, 30)
+
+def input_box(prompt):
+    user_input = ""
+    active = True
+    while active:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    active = False
+                elif event.key == pygame.K_BACKSPACE:
+                    user_input = user_input[:-1]
+                else:
+                    user_input += event.unicode
+
+        screen.fill(WHITE)
+        text_surface = font.render(prompt + " " + user_input, True, BLACK)
+        screen.blit(text_surface, (50, 50))
+        pygame.display.flip()
+
+    return user_input
+
+def input_character_info():
+    name = input_box("Enter character's name:")
+    class_ = input_box("Enter character's class:")
+    
+    # Level Input
+    while True:
+        level_str = input_box("Enter character's level:")
+        try:
+            level = int(level_str)
+            if level <= 0:
+                raise ValueError("Level must be a positive integer.")
+            break
+        except ValueError as e:
+            error_message(e)
+
+    # Stat Inputs
+    stats = {}
+    stat_names = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma']
+    for stat_name in stat_names:
+        while True:
+            stat_str = input_box(f"Enter {stat_name}:")
+            try:
+                stat_value = int(stat_str)
+                if not (1 <= stat_value <= 20):
+                    raise ValueError("Stat value must be between 1 and 20.")
+                stats[stat_name] = stat_value
+                break
+            except ValueError as e:
+                error_message(e)
+
+    return name, class_, level, stats
+
+def error_message(message):
+    error_font = pygame.font.SysFont(None, 20)
+    error_surface = error_font.render(str(message), True, (255, 0, 0))
+    screen.blit(error_surface, (50, 150))  # Adjust the position as needed
+    pygame.display.flip()
+    pygame.time.wait(2000)  # Display the error message for 2 seconds
+
+def roll_dice():
+    return random.randint(1, 20)
+
+# Input character information
+name, class_, level, stats = input_character_info()
+print("Character information:")
+print("Name:", name)
+print("Class:", class_)
+print("Level:", level)
+print("Stats:", stats)
+
+# Main loop
+rolling = False
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                rolling = True
+                result = roll_dice()
+                print("You rolled a", result)
+
+    screen.fill(WHITE)
+
+    if not rolling:
+        # Display character information
+        text = "Name: {}\nClass: {}\nLevel: {}\nStats: {}".format(name, class_, level, stats)
+        text_surface = font.render(text, True, BLACK)
+        screen.blit(text_surface, (50, 50))
+    else:
+        # Display character name and result
+        header_text = font.render(name, True, BLACK)
+        screen.blit(header_text, (50, 50))
+
+        if result == 20:
+            roll_text = font.render("Critical hit! You rolled a natural 20!", True, BLACK)
+        elif result == 1:
+            roll_text = font.render("Critical fail! You rolled a natural 1!", True, BLACK)
+        else:
+            roll_text = font.render("You rolled a {}".format(result), True, BLACK)
+        
+        screen.blit(roll_text, (50, 100))
+
+    # Update the display
+    pygame.display.flip()
+
+# Quit Pygame
+pygame.quit()
+sys.exit()
