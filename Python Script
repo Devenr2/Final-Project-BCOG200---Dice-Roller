@@ -7,16 +7,10 @@ This will need a visual component and a couple different things.
 I first want there to be a simple text box where the user inputs 7 items into the system. 
   -Each input will be a two digit number, with a range of 01-99. 
   -The seven inputs will be Character Level, and then each of the Six DnD stats. 
-  -There will be text explaining to the user the valid input style as well as messages for improper inputs
-After inputing the stats and level, the user then selects which proficiencies they have. They will be shown a list of all DnD skills, and there will be three buttons next to each one.
-  -The buttons are proficient, expertiese, and normal. 
+  -There will be text for improper inputs
+After inputing the stats and level, the user then selects which proficiencies they have. They will be shown a list of all DnD skills
 
-After inputing all this, the user will then be taken to the Dice Selection Screen
-
-The Dice Selection screen will merely show all the different dice you can roll. For a majority of the dice, clicking on it will ask how many dice to roll, and if this is a damage roll. 
-  =This would be for the D4, D6, D8, D10, and D12
-
-Clicking on the D100 will simply roll the D100 and give an output
+After inputing all this, the user will then be taken to the Dice Rolling screen
 
 Clicking on the D20 is the most interesting. This will offer a variety of options in the form of different buttons and text boxes: shown below
     - Which Ability? (Text Box)
