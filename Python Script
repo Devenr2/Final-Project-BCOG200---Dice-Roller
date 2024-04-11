@@ -201,7 +201,7 @@ while running:
 
     if not rolling:
         # Display character information
-        text = "Name: {}\nClass: {}\nLevel: {}\nStats: {}".format(name, class_, level, stats)
+        text = "Name: {} {} {}".format(name, class_, level)
         text_surface = font.render(text, True, BLACK)
         screen.blit(text_surface, (50, 50))
     else:
