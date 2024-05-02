@@ -6,19 +6,19 @@
 
 **Here is a simplified flow system to follow:**
 
-Enter your character stats and select proficiencies
+  Enter your character stats and select proficiencies
 
-Hit space bar to advance the screen
+  Hit space bar to advance the screen
 
-Select your desired skill
+  Select your desired skill
 
-Select if your roll is with advantage, disadvantage, or normal
+  Select if your roll is with advantage, disadvantage, or normal
 
-Hit space bar to roll the dice
+  Hit space bar to roll the dice
 
-Wait for the result to dissapear
+  Wait for the result to dissapear
 
-Hit space to advance the screen back to skill selection. 
+  Hit space to advance the screen back to skill selection. 
 
 
 The end result is the program will roll the dice for you and give you a simple digit answer. No more having to do the math yourself, or hunt through your character sheet in order to add up your proficiency, abilty score, and status. The program will 'save' your character stats until closed. Enjoy!
