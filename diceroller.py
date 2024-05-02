@@ -140,9 +140,10 @@ def get_positive_integer(prompt):
         level_str = input_box(prompt)
         try:
             level = int(level_str)
-            if level <= 0:
-                raise ValueError("Level must be a positive integer.")
-            return level
+            if 1 <= level <= 20:
+                return level
+            else:
+                raise ValueError("Level must be between 1 and 20.")
         except ValueError as e:
             display_error(e)
 
