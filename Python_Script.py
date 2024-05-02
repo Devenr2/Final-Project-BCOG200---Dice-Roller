@@ -230,18 +230,27 @@ def get_stat_modifier(skill, stats):
     if stat:
         # Calculate the modifier based on the character's stats
         #DND stats are taken by taking the raw stat number, subtracting 10, then deviding by two and rounding
-        stat_value = stats.get(stat) 
+        stat_value = stats.get(stat, 10) 
         modifier = (stat_value - 10) // 2
         return modifier
     else:
         return 0  # Return 0 if no associated stat found, just in case. The error message system should prevent this though
 
 
-def roll_dice(level, selected_proficiencies, selected_skill, stats):
-    #get the flat roll
-    roll = random.randint(1, 20)
+def roll_dice(level, selected_proficiencies, selected_skill, stats, roll_type):
+    # Roll dice based on the roll type
+    if roll_type == "advantage":
+        roll1 = random.randint(1, 20)
+        roll2 = random.randint(1, 20)
+        roll = max(roll1, roll2) #take the better of the 2 rolls
+    elif roll_type == "disadvantage":
+        roll1 = random.randint(1, 20)
+        roll2 = random.randint(1, 20)
+        roll = min(roll1, roll2) #take the worse of the 2 rolls
+    else:
+        roll = random.randint(1, 20) #flat rolls
 
-    #calculate the proficiency bonus based off character level
+    # Calculate proficiency bonus
     if level >= 1 and level <= 4:
         proficiency_bonus = 2
     elif level >= 5 and level <= 8:
@@ -257,13 +266,13 @@ def roll_dice(level, selected_proficiencies, selected_skill, stats):
     if selected_skill not in selected_proficiencies:
         proficiency_bonus = 0
 
-    #get that stat modifier from earlier
+    # Calculate stat modifier
     stat_modifier = get_stat_modifier(selected_skill, stats)
 
-    #add it all up
+    # Calculate result
     result = roll + proficiency_bonus + stat_modifier
     
-    #work out the crit hits and misses
+    # Check for critical hits or misses
     if roll == 20:
         return "natural_20"
     elif roll == 1:
@@ -283,6 +292,7 @@ def main():
 
     rolling = False
     skill = None
+    roll_type = None
     running = True
     while running:
         for event in pygame.event.get():
@@ -293,21 +303,32 @@ def main():
                     name, class_, level, selected_proficiencies, stats = input_character_info()
                 elif not skill:
                     skill = skill_selection_screen()
+                elif not roll_type:
+                    if event.key == pygame.K_a:
+                        roll_type = "advantage"
+                    elif event.key == pygame.K_d:
+                        roll_type = "disadvantage"
+                    elif event.key == pygame.K_n:
+                        roll_type = "normal"
                 elif event.key == pygame.K_SPACE:
                     rolling = True
-                    result = roll_dice(level, selected_proficiencies, skill, stats)
+                    result = roll_dice(level, selected_proficiencies, skill, stats, roll_type)
                     print("You rolled a", result, "for", skill)
                     draw_dice_result_text(result, skill)
                     rolling = False
                     pygame.display.flip()
                     pygame.time.wait(2000)
                     skill = None
+                    roll_type = None
                 elif event.key == pygame.K_r:
                     skill = None
+                    roll_type = None
 
         screen.fill(WHITE)
         if not rolling:
             draw_character_info(name, class_, level, skill)
+            if not roll_type:
+                draw_text("Select roll type: (A) Advantage, (D) Disadvantage, (N) Normal", (50, 200))
         pygame.display.flip()
 
     pygame.quit()
