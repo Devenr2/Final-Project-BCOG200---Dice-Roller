@@ -4,7 +4,7 @@
   2. You will be asked on which skill you are rolling, simply click on the skill from the list provided. Don't worry about having to specify if you are proficient. The program will handle that. 
   3. Finally, you will be asked if it is a roll with advantage, disadvantage, or is neutral. You will select this using the buttons shown on the screen.
 
-Here is a simplified flow system to follow:
+**Here is a simplified flow system to follow:**
 
 Enter your character stats and select proficiencies
 
