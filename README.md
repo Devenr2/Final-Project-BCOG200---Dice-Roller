@@ -5,12 +5,19 @@
   3. Finally, you will be asked if it is a roll with advantage, disadvantage, or is neutral. You will select this using the buttons shown on the screen.
 
 Here is a simplified flow system to follow:
+
 Enter your character stats and select proficiencies
+
 Hit space bar to advance the screen
+
 Select your desired skill
+
 Select if your roll is with advantage, disadvantage, or normal
+
 Hit space bar to roll the dice
+
 Wait for the result to dissapear
+
 Hit space to advance the screen back to skill selection. 
 
 
