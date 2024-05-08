@@ -3,6 +3,7 @@ import sys
 import random
 
 #Skills Dictionary
+#These are the different skills of Dungeons and Dragons fifth edition. 
 dnd_skills = [
     "Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception",
     "History", "Insight", "Intimidation", "Investigation", "Medicine",
@@ -10,6 +11,7 @@ dnd_skills = [
     "Sleight of Hand", "Stealth", "Survival"
 ]
 # Constants
+#Just for setting up the window
 WIDTH, HEIGHT = 800, 800
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -29,6 +31,7 @@ def draw_text(text, position, color=BLACK):
     screen.blit(text_surface, position)
 
 #function to display error messages for 2 seconds
+#You can change the time.wait number to change how long the error message remains on screen. Every 1000 is another second. 
 def display_error(message):
     draw_text(message, (50, HEIGHT // 2), (255, 0, 0))
     pygame.display.flip()
@@ -76,15 +79,15 @@ def error_message(message):
     error_surface = error_font.render(str(message), True, (255, 0, 0))
     screen.blit(error_surface, (50, 150))  # Adjust the position as needed
     pygame.display.flip()
-    pygame.time.wait(2000)  # Display the error message for 2 seconds
+    pygame.time.wait(2000)  # Display the error message for 2 seconds, again, you can change this
 
 #How we input character stats
 def input_character_info():
     name = input_box("Enter character's name:")
     class_ = input_box("Enter character's class:")
     
-    # Level Input with Error Handling
-    level = get_positive_integer("Enter character's level:")
+    # Level Input
+    level = get_positive_integer("Enter character's level. Number 1-20:")
 
     # Skill Proficiency Selection
     proficiency_buttons = create_proficiency_buttons()
@@ -119,11 +122,12 @@ def input_character_info():
         pygame.display.flip()
 
     # Stat Inputs with Error Handling
+    # ALL DND stats are whole numbers 1-20 (at least for normal characters. This program does not handle gods well)
     stats = {}
     stat_names = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma']
     for stat_name in stat_names:
         while True:
-            stat_str = input_box(f"Enter {stat_name}:")
+            stat_str = input_box(f"Enter {stat_name}: Whole Number 1-20")
             try:
                 stat_value = int(stat_str)
                 if not (1 <= stat_value <= 20):
@@ -135,6 +139,7 @@ def input_character_info():
 
     return name, class_, level, selected_proficiencies, stats
 
+#This funcion handles the error message for if a user trys to use a number not between 1 and 20
 def get_positive_integer(prompt):
     while True:
         level_str = input_box(prompt)
@@ -147,6 +152,8 @@ def get_positive_integer(prompt):
         except ValueError as e:
             display_error(e)
 
+
+#This might seem redundant to have, but it lets me draw on just the Get_Stats part by name without having to rerun the whole character creator
 def get_stat_input(stat_name):
     while True:
         stat_str = input_box(f"Enter {stat_name}:")
@@ -171,6 +178,8 @@ def create_skill_buttons():
         skill_y += 30
     return skill_buttons
 
+#Whole bunch of buttons to show the skill proficiencies you can have
+#Red is not proficient, green means proficient
 def skill_selection_screen():
     skill_buttons = create_skill_buttons()
     selected_skill = None
@@ -206,6 +215,7 @@ def draw_skills():
 
 def get_stat_modifier(skill, stats):
     # Define which stat corresponds to each skill via a dictionary like earlier
+    #Each and every skill in DND is related to a Stat. This dictionary lets me define that relationship and thus allows you to add stat based modifiers to skill based dice rolls
     skill_to_stat = {
         "Acrobatics": "Dexterity",
         "Animal Handling": "Wisdom",
@@ -231,6 +241,7 @@ def get_stat_modifier(skill, stats):
     if stat:
         # Calculate the modifier based on the character's stats
         #DND stats are taken by taking the raw stat number, subtracting 10, then deviding by two and rounding
+        #YES, THEY CAN BE NEGATIVE
         stat_value = stats.get(stat, 10) 
         modifier = (stat_value - 10) // 2
         return modifier
@@ -240,6 +251,8 @@ def get_stat_modifier(skill, stats):
 
 def roll_dice(level, selected_proficiencies, selected_skill, stats, roll_type):
     # Roll dice based on the roll type
+    #Advantage is rolling 2 twenty sided dice and taking the higher one
+    #Disadvantage is rolling 2 twenty sided dice and taking the lower one
     if roll_type == "advantage":
         roll1 = random.randint(1, 20)
         roll2 = random.randint(1, 20)
@@ -252,6 +265,7 @@ def roll_dice(level, selected_proficiencies, selected_skill, stats, roll_type):
         roll = random.randint(1, 20) #flat rolls
 
     # Calculate proficiency bonus
+    #Proficincy bonus in DND is tied directly to character level is ONLY added to rolls if the skill you are rolling is one you are proficient in. 
     if level >= 1 and level <= 4:
         proficiency_bonus = 2
     elif level >= 5 and level <= 8:
@@ -267,13 +281,15 @@ def roll_dice(level, selected_proficiencies, selected_skill, stats, roll_type):
     if selected_skill not in selected_proficiencies:
         proficiency_bonus = 0
 
-    # Calculate stat modifier
+    # Calculate stat modifier, just use the earlier function
     stat_modifier = get_stat_modifier(selected_skill, stats)
 
     # Calculate result
+    #WOO! MATH
     result = roll + proficiency_bonus + stat_modifier
     
     # Check for critical hits or misses
+    #Critical Hits always work, and Critical Misses always fail
     if roll == 20:
         return "natural_20"
     elif roll == 1:
@@ -282,6 +298,7 @@ def roll_dice(level, selected_proficiencies, selected_skill, stats, roll_type):
         return result
 
 # Main function
+# Time to put it all together
 def main():
     name, class_, level, selected_proficiencies, stats = input_character_info()
     print("Character information:")
