@@ -87,7 +87,7 @@ def input_character_info():
     class_ = input_box("Enter character's class:")
     
     # Level Input
-    level = get_positive_integer("Enter character's level. Number 1-20:")
+    level = get_positive_integer("Enter character's level.:")
 
     # Skill Proficiency Selection
     proficiency_buttons = create_proficiency_buttons()
@@ -127,7 +127,7 @@ def input_character_info():
     stat_names = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma']
     for stat_name in stat_names:
         while True:
-            stat_str = input_box(f"Enter {stat_name}: Whole Number 1-20")
+            stat_str = input_box(f"Enter {stat_name}:")
             try:
                 stat_value = int(stat_str)
                 if not (1 <= stat_value <= 20):
