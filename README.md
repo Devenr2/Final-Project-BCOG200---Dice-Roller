@@ -3,7 +3,7 @@
   NOTE: before you do anything else, you need to download the diceroller.py file and try and run it. 
 
   
-  1. First you are going to need to input your character level, ability scores, and proficiencies. Simply enter those numbers when prompted by the program or click on the skills with which you have proficiency. The program will store this information and behind the scenes calculte your proficiency bonus as well as stat modifiers. 
+  1. First you are going to need to input your character level, ability scores, and proficiencies. Simply enter those numbers when prompted by the program or click on the skills with which you have proficiency. For those of us with less DND knowledge, your level and stats should be a whole number between 1 and 20. The program will store this information and behind the scenes calculte your proficiency bonus as well as stat modifiers. 
   2. You will be asked on which skill you are rolling, simply click on the skill from the list provided. Don't worry about having to specify if you are proficient. The program will handle that. 
   3. Finally, you will be asked if it is a roll with advantage, disadvantage, or is neutral. You will select this using the buttons shown on the screen.
 
